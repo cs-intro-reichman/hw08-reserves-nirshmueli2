@@ -191,8 +191,9 @@ class PlayList {
         }
         int minValue = tracks[start].getDuration();
         int minIndex = start;
-        for (int i = start; i < size; i++) {
+        for (int i = start + 1; i < size; i++) {
             if (tracks[i].getDuration() < minValue) {
+                minValue = tracks[i].getDuration();
                 minIndex = i;
             }
         }
@@ -204,6 +205,9 @@ class PlayList {
      * If the list is empty, returns null.
      */
     public String titleOfShortestTrack() {
+        if (size == 0) {
+            return null;
+        }
         return tracks[minIndex(0)].getTitle();
     }
 
@@ -217,9 +221,13 @@ class PlayList {
         // Uses the selection sort algorithm,
         // calling the minIndex method in each iteration.
         for (int i = 0; i < size; i++) {
+            int minIndex = minIndex(i);
             Track temp = tracks[i];
-            tracks[i] = tracks[minIndex(i)];
-            tracks[minIndex(i)] = temp;
+            tracks[i] = tracks[minIndex];
+            tracks[minIndex] = temp;
+            // String traString = tracks[i].getTitle();
+            // String traString2 = tracks[minIndex(i)].getTitle();
+            // int na = 1;
         }
     }
 }
