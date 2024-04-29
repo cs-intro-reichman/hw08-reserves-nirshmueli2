@@ -113,6 +113,7 @@ class PlayList {
                 OldIndex--;
             }
             tracks[i] = track;
+            size++;
         }
         return true;
     }
